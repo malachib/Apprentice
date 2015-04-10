@@ -1,0 +1,40 @@
+﻿{
+    "version": "1.0.0-*",
+    "dependencies": {
+    },
+
+    "frameworks": {
+        "dnx451": {
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "net40": {
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "net45": {
+            "dependencies": {
+                //"Castle.Core": "3.3.3"
+            },
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "aspnet50": {
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "aspnetcore50": {
+            "dependencies": {
+                "System.Runtime": "4.0.20-beta-22523"
+            }
+        }
+    }
+}

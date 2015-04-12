@@ -33,5 +33,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <Import Project="..\..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

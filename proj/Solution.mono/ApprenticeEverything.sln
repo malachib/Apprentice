@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.Text.KeywordExpander", "Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.csproj", "{401C6426-0B15-405D-8975-9D6FF73BF512}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Text.KeywordExpander.Shared", "..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared\Fact.Text.KeywordExpander.Shared.shproj", "{69E898C5-FBEA-42F9-898B-8A9A84F64F90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

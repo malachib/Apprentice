@@ -39,7 +39,13 @@ namespace Fact.Net.Sockets
             this.ipEndPoint = ipAddress;
         }
 
-        public void Start([Optional, DefaultParameterValue(false)] bool async)
+        public void Start(
+#if !NET45
+            [Optional, DefaultParameterValue(false)] bool async
+#else
+            bool async = false
+#endif
+            )
         {
             if (async)
                 throw new InvalidOperationException("Async mode not yet supported");

@@ -27,12 +27,14 @@
             }
         },
         "aspnet50": {
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
             }
         },
         "aspnetcore50": {
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-22523"
             }

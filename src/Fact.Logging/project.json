@@ -1,0 +1,46 @@
+﻿{
+    // Hopefully this technique will work to get Castle.ILogger shim working:
+    // http://forums.asp.net/t/2002302.aspx?Adding+a+non+nuget+reference+to+a+vNext+project
+    "version": "1.0.0-*",
+    "dependencies": {
+    },
+
+    "frameworks": {
+        "dnx451": {
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "net35": {
+
+        },
+        "net40": {
+            "compilationOptions": { "define": [ "NET40" ] },
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+            }
+        },
+        "net45": {
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+            }
+        },
+        "aspnet50": {
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+            }
+        },
+        "aspnetcore50": {
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
+            "dependencies": {
+                "System.Runtime": "4.0.20-beta-22523"
+            }
+        }
+    }
+}

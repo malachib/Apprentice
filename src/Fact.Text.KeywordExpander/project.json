@@ -1,6 +1,7 @@
 {
     "version": "1.0.0-*",
     "dependencies": {
+        "Castle.ILogger.vNext": "1.0.0"
     },
 
     "frameworks": {

@@ -1,4 +1,4 @@
-﻿#if !NETCORE
+﻿#if !NETCORE || !USE_MS_LOGGER
 using Castle.Core.Logging;
 #else
 using Microsoft.Framework.Logging;

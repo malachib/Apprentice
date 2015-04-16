@@ -1,0 +1,41 @@
+﻿{
+    "version": "1.0.0-*",
+    "dependencies": {
+    },
+    "configurations": {
+        "DEBUG": {"compilationOptions": {"define": ["VNEXT"]}}
+    },
+
+    "frameworks" : {
+        "dnx451": {
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "net40": {
+            "compilationOptions": {"define": ["NET40"]},
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "net45": {
+            "compilationOptions": {"define": ["NET45", "NET40"]},
+            "dependencies": {
+            },
+            "frameworkAssemblies": {
+                "System.Net": "4.0.0.0"
+            }
+        },
+        "aspnet50" : { 
+            "dependencies": {
+            }
+        },
+        "aspnetcore50" : { 
+            "dependencies": {
+                "System.Runtime": "4.0.20-beta-22523"
+            }
+        }
+    }
+}

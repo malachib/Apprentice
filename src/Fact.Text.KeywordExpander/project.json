@@ -1,7 +1,9 @@
 {
     "version": "1.0.0-*",
     "dependencies": {
-        "Castle.ILogger.vNext": "1.0.0"
+        "Castle.ILogger.vNext": "1.0.0",
+        "System.Reflection.TypeExtensions": "4.0.0-beta-22605",
+        "System.Collections": "4.0.10-beta-22605"
     },
 
     "frameworks": {

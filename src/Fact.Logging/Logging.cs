@@ -86,7 +86,7 @@ namespace Fact.Apprentice.Core
             {
                 // MonoDroid uses TinyIoC and is hard-wired to the specialized CastleMonodroidLogger
                 // so we confidently resolve directly every time
-#if MONODROID
+#if TINYIOC
                 return Global.Container.Resolve<Castle.Core.Logging.ILoggerFactory>();
 #else
                 var factory = Global.Container.TryResolve<Castle.Core.Logging.ILoggerFactory>();

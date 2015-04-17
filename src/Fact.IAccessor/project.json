@@ -1,19 +1,22 @@
 ﻿{
     "version": "1.0.0-*",
+    // System.IO needed for Stream operations which eventually may be liberated from this project
+    // if we break ISerializationManager code away from IStateAccessor/IAccessor code
     "dependencies": {
+        "System.IO": "4.0.10-beta-22605"
     },
     "configurations": {
-        "DEBUG": {"compilationOptions": {"define": ["VNEXT"]}}
+        "DEBUG": { "compilationOptions": { "define": [ "VNEXT" ] } }
     },
 
-    "frameworks" : {
+    "frameworks": {
         "dnx451": {
             "frameworkAssemblies": {
                 "System.Net": "4.0.0.0"
             }
         },
         "net40": {
-            "compilationOptions": {"define": ["NET40"]},
+            "compilationOptions": { "define": [ "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
@@ -21,18 +24,18 @@
             }
         },
         "net45": {
-            "compilationOptions": {"define": ["NET45", "NET40"]},
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
                 "System.Net": "4.0.0.0"
             }
         },
-        "aspnet50" : { 
+        "aspnet50": {
             "dependencies": {
             }
         },
-        "aspnetcore50" : { 
+        "aspnetcore50": {
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-22523"
             }

@@ -3,6 +3,8 @@
     // http://forums.asp.net/t/2002302.aspx?Adding+a+non+nuget+reference+to+a+vNext+project
     "version": "1.0.0-*",
     "dependencies": {
+        "Castle.Core": "3.3.3",
+        "Castle.Windsor": "3.3.0"
     },
 
     "frameworks": {
@@ -39,6 +41,7 @@
         "aspnetcore50": {
             "compilationOptions": { "define": [ "NET45", "NET40" ] },
             "dependencies": {
+                "Castle.ILogger.vNext": "1.0.0",
                 "System.Runtime": "4.0.20-beta-22523"
             }
         }

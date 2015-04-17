@@ -3,7 +3,8 @@
     "dependencies": {
         "Fact.Logging": "",
         "System.Reflection.TypeExtensions": "4.0.0-beta-22605",
-        "System.Collections": "4.0.10-beta-22605"
+        "System.Collections": "4.0.10-beta-22605",
+        "Fact.IAccessor": "1.0.0-*"
     },
 
     "frameworks": {

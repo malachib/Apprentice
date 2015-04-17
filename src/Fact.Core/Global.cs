@@ -1,4 +1,6 @@
-﻿#if MONODROID
+﻿// Keep parity with ApprenticeOS (this comment has yet to be copied to closed-source version)
+
+#if MONODROID
 #define TINYIOC
 #endif
 

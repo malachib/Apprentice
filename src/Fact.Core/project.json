@@ -13,17 +13,21 @@
         "dnx451": {
             "compilationOptions": { "define": [ "NET45", "NET40" ] },
             "frameworkAssemblies": {
+                "System.Configuration": "4.0.0.0",
                 "System.Net": "4.0.0.0"
             }
         },
         "net35": {
-
+            "frameworkAssemblies": {
+                "System.Configuration": ""
+            }
         },
         "net40": {
             "compilationOptions": { "define": [ "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
+                "System.Configuration": "4.0.0.0"
             }
         },
         "net45": {
@@ -31,6 +35,7 @@
             "dependencies": {
             },
             "frameworkAssemblies": {
+                "System.Configuration": "4.0.0.0"
             }
         },
         "aspnet50": {
@@ -38,10 +43,11 @@
             "dependencies": {
             },
             "frameworkAssemblies": {
+                "System.Configuration": "4.0.0.0"
             }
         },
         "aspnetcore50": {
-            "compilationOptions": { "define": [ "NET45", "NET40","TINYIOC" ] },
+            "compilationOptions": { "define": [ "NET45", "NET40", "TINYIOC" ] },
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-22523"
             }

@@ -1,11 +1,15 @@
-﻿using System;
+﻿// Keep in parity with ApprenticeOS
+
+using System;
 using System.Collections.Generic;
+#if !VNEXT
 using System.Linq;
 using System.Text;
 using Fact.Apprentice.Core.Validation;
 //using Fact.Apprentice.Core.Flow;
 using System.Security.Permissions;
 using Fact.Apprentice.Core;
+#endif
 using System.Collections;
 
 namespace Fact.Apprentice.Collection
@@ -172,10 +176,12 @@ namespace Fact.Apprentice.Collection
         void SetValue(object instance, object value);
     }
 
+#if !VNEXT
     public interface IParameterInfo_PropInfo
     {
         Walker.PropInfo Property { get; }
     }
+#endif
 
     /// <summary>
     /// Indexer reusable base interface
@@ -258,6 +264,7 @@ namespace Fact.Apprentice.Collection
     }
 
 
+#if !VNEXT
     public static class IStateAccessor_Extensions
     {
         /// <summary>
@@ -308,4 +315,5 @@ namespace Fact.Apprentice.Collection
             }
         }
     }
+#endif
 }

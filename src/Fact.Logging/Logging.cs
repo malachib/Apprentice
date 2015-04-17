@@ -1,18 +1,12 @@
 ﻿#define DEBUG2
+// Keep in parity with ApprenticeOS
 
 #if MONODROID
+#define TINYIOC
 using Android.Util;
 #endif
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading;
-using System.Configuration;
-using System.Diagnostics;
-using System.Transactions;
 using Castle.Core.Logging;
 
 namespace Fact.Apprentice.Core
@@ -193,7 +187,7 @@ namespace Fact.Apprentice.Core
     }
 }
 
-
+#if !VNEXT
 namespace Fact.Apprentice.Core.SI
 {
     using Fact.Apprentice.Core.DAL;
@@ -255,3 +249,4 @@ namespace Fact.Apprentice.Core.SI
     }
 }
 
+#endif

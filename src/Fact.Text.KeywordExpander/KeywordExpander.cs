@@ -1,13 +1,15 @@
-﻿using System;
+﻿// Code officially decoupled from closed-source version
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Specialized;
-//using Fact.Apprentice.Core;
+using Fact.Apprentice.Core;
 using System.IO;
 using Castle.Core.Logging;
-//using Fact.Apprentice.Collection;
+using Fact.Apprentice.Collection;
 
 namespace Fact.Text
 {

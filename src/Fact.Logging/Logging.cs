@@ -1,5 +1,5 @@
-﻿#define DEBUG2
-// Keep in parity with ApprenticeOS
+﻿// Keep in parity with ApprenticeOS
+#define DEBUG2
 
 #if MONODROID
 #define TINYIOC
@@ -46,6 +46,7 @@ namespace Fact.Apprentice.Core
         /// </summary>
         /// <param name="frameIndex">defaults to one frame ABOVE the immediate caller</param>
         /// <returns></returns>
+#if !NETCORE
         internal static System.Reflection.MethodBase GetMethod(int frameIndex = 2)
         {
             var stack = new System.Diagnostics.StackTrace();
@@ -53,6 +54,26 @@ namespace Fact.Apprentice.Core
             var method = frame.GetMethod();
             return method;
         }
+#else
+        
+        // Kluding this since NETCORE doesn't allow direct stack frame access,
+        // and therefore hard for us to pull proper MethodBase
+        internal class _MethodBase
+        {
+            internal Type DeclaringType;
+            internal string Name;
+        }
+
+        internal static _MethodBase GetMethod(int frameIndex = 2)
+        {
+            var stack = Environment.StackTrace;
+            var stackLines = stack.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var frame = stackLines[frameIndex - 1];
+            var method = frame;
+
+            return new _MethodBase() { DeclaringType = typeof(Nullable), Name = method };
+        }
+#endif
 
 
         /// <summary>

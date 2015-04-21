@@ -6,7 +6,9 @@
 
 using System;
 using System.Text;
+#if !NETCORE
 using System.Configuration;
+#endif
 
 #if !TINYIOC
 using Castle.Windsor;
@@ -24,7 +26,7 @@ namespace Fact.Apprentice.Core
         public static IWindsorContainer Container;
 
 #if !MODULAR
-        internal 
+        internal
 #else
         // MODULAR variant externalizes many of the items which use proxy, so make it public (unfortunately)
         public
@@ -42,7 +44,7 @@ namespace Fact.Apprentice.Core
                 return Container.Resolve<Configuration.IApprenticeConfiguration>();
 				throw new InvalidOperationException("Not yet supported.  Planned SharedPreferences interaction here");
 #else
-                if(config == null)
+                if (config == null)
                     config = Configuration.AppConfigInterceptor.Get<Configuration.IApprenticeConfiguration>();
 #endif
 
@@ -58,13 +60,13 @@ namespace Fact.Apprentice.Core
 #else
             try
             {
-				// XmlInterpreter scans web/app.config for castle-related goodies
+                // XmlInterpreter scans web/app.config for castle-related goodies
                 var xml = new XmlInterpreter();
                 Container = new WindsorContainer(xml);
             }
             // occurs when no castle XML section is present.  Since we tend to programatically register
             // our components, just create a new empty windsor container
-			// FIX: try/catch is slow.  Find a better method of initializing Container
+            // FIX: try/catch is slow.  Find a better method of initializing Container
             catch (ConfigurationErrorsException)
             {
                 Container = new WindsorContainer();

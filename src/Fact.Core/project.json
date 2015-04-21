@@ -53,7 +53,7 @@
             }
         },
         "aspnetcore50": {
-            "compilationOptions": { "define": [ "NET45", "NET40", "TINYIOC" ] },
+            "compilationOptions": { "define": [ "NET45", "NET40", "TINYIOC", "NETCORE" ] },
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-22523"
             }

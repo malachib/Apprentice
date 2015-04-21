@@ -25,7 +25,8 @@
         },
         "net35": {
             "frameworkAssemblies": {
-                "System.Configuration": ""
+                "System.Configuration": "",
+                "System.IO": "4.0.0.0"
             }
         },
         "net40": {
@@ -33,7 +34,8 @@
             "dependencies": {
             },
             "frameworkAssemblies": {
-                "System.Configuration": "4.0.0.0"
+                "System.Configuration": "4.0.0.0",
+                "System.IO": "4.0.0.0"
             }
         },
         "net45": {
@@ -41,7 +43,8 @@
             "dependencies": {
             },
             "frameworkAssemblies": {
-                "System.Configuration": "4.0.0.0"
+                "System.Configuration": "4.0.0.0",
+                "System.IO": "4.0.0.0"
             }
         },
         "aspnet50": {
@@ -49,7 +52,8 @@
             "dependencies": {
             },
             "frameworkAssemblies": {
-                "System.Configuration": "4.0.0.0"
+                "System.Configuration": "4.0.0.0",
+                "System.IO": "4.0.0.0"
             }
         },
         "aspnetcore50": {

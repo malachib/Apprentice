@@ -18,6 +18,12 @@
 // register the TinyMessenger messenger/event aggregator
 //#define TINYMESSENGER
 
+// Uncomment this line if you want to internalize this library
+//#define TINYIOC_INTERNAL
+
+// Uncomment this line if you want to target PCL.
+//#define PORTABLE
+
 // Preprocessor directives for enabling/disabling functionality
 // depending on platform features. If the platform has an appropriate
 // #DEFINE then these should be set automatically below.
@@ -29,9 +35,11 @@
 #define RESOLVE_OPEN_GENERICS               // Platform supports resolving open generics
 #define READER_WRITER_LOCK_SLIM             // Platform supports ReaderWriterLockSlim
 
-//// NETFX_CORE
-//#if NETFX_CORE
-//#endif
+#if PORTABLE
+#undef APPDOMAIN_GETASSEMBLIES
+#undef COMPILED_EXPRESSIONS
+#undef READER_WRITER_LOCK_SLIM
+#endif
 
 // CompactFramework / Windows Phone 7
 // By default does not support System.Linq.Expressions.
@@ -65,6 +73,7 @@
 #endif
 
 #endregion
+
 namespace TinyIoC
 {
     using System;
@@ -88,7 +97,12 @@ namespace TinyIoC
 
     #region SafeDictionary
 #if READER_WRITER_LOCK_SLIM
-    public class SafeDictionary<TKey, TValue> : IDisposable
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class SafeDictionary<TKey, TValue> : IDisposable
     {
         private readonly ReaderWriterLockSlim _padlock = new ReaderWriterLockSlim();
         private readonly Dictionary<TKey, TValue> _Dictionary = new Dictionary<TKey, TValue>();
@@ -202,7 +216,12 @@ namespace TinyIoC
         #endregion
     }
 #else
-    public class SafeDictionary<TKey, TValue> : IDisposable
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif 
+    class SafeDictionary<TKey, TValue> : IDisposable
     {
         private readonly object _Padlock = new object();
         private readonly Dictionary<TKey, TValue> _Dictionary = new Dictionary<TKey, TValue>();
@@ -283,7 +302,12 @@ namespace TinyIoC
     #endregion
 
     #region Extensions
-    public static class AssemblyExtensions
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    static class AssemblyExtensions
     {
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
@@ -291,7 +315,7 @@ namespace TinyIoC
 
             try
             {
-				assemblies = assembly.GetTypes();
+                assemblies = assembly.GetTypes();
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -311,7 +335,12 @@ namespace TinyIoC
         }
     }
 
-    public static class TypeExtensions
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    static class TypeExtensions
     {
         private static SafeDictionary<GenericMethodCacheKey, MethodInfo> _genericMethodCache;
 
@@ -526,7 +555,12 @@ namespace TinyIoC
     #endregion
 
     #region TinyIoC Exception Types
-    public class TinyIoCResolutionException : Exception
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class TinyIoCResolutionException : Exception
     {
         private const string ERROR_TEXT = "Unable to resolve type: {0}";
 
@@ -541,7 +575,12 @@ namespace TinyIoC
         }
     }
 
-    public class TinyIoCRegistrationTypeException : Exception
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class TinyIoCRegistrationTypeException : Exception
     {
         private const string REGISTER_ERROR_TEXT = "Cannot register type {0} - abstract classes or interfaces are not valid implementation types for {1}.";
 
@@ -556,7 +595,12 @@ namespace TinyIoC
         }
     }
 
-    public class TinyIoCRegistrationException : Exception
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class TinyIoCRegistrationException : Exception
     {
         private const string CONVERT_ERROR_TEXT = "Cannot convert current registration of {0} to {1}";
         private const string GENERIC_CONSTRAINT_ERROR_TEXT = "Type {1} is not valid for a registration of type {0}";
@@ -582,7 +626,12 @@ namespace TinyIoC
         }
     }
 
-    public class TinyIoCWeakReferenceException : Exception
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class TinyIoCWeakReferenceException : Exception
     {
         private const string ERROR_TEXT = "Unable to instantiate {0} - referenced object has been reclaimed";
 
@@ -597,7 +646,12 @@ namespace TinyIoC
         }
     }
 
-    public class TinyIoCConstructorResolutionException : Exception
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class TinyIoCConstructorResolutionException : Exception
     {
         private const string ERROR_TEXT = "Unable to resolve constructor for {0} using provided Expression.";
 
@@ -622,7 +676,12 @@ namespace TinyIoC
         }
     }
 
-    public class TinyIoCAutoRegistrationException : Exception
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    class TinyIoCAutoRegistrationException : Exception
     {
         private const string ERROR_TEXT = "Duplicate implementation of type {0} found ({1}).";
 
@@ -650,7 +709,12 @@ namespace TinyIoC
     /// <summary>
     /// Name/Value pairs for specifying "user" parameters when resolving
     /// </summary>
-    public sealed class NamedParameterOverloads : Dictionary<string, object>
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    sealed class NamedParameterOverloads : Dictionary<string, object>
     {
         public static NamedParameterOverloads FromIDictionary(IDictionary<string, object> data)
         {
@@ -677,7 +741,12 @@ namespace TinyIoC
         }
     }
 
-    public enum UnregisteredResolutionActions
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    enum UnregisteredResolutionActions
     {
         /// <summary>
         /// Attempt to resolve type, even if the type isn't registered.
@@ -700,13 +769,23 @@ namespace TinyIoC
         GenericsOnly
     }
 
-    public enum NamedResolutionFailureActions
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    enum NamedResolutionFailureActions
     {
         AttemptUnnamedResolution,
         Fail
     }
 
-    public enum DuplicateImplementationActions
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    enum DuplicateImplementationActions
     {
         RegisterSingle,
         RegisterMultiple,
@@ -716,7 +795,12 @@ namespace TinyIoC
     /// <summary>
     /// Resolution settings
     /// </summary>
-    public sealed class ResolveOptions
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    sealed class ResolveOptions
     {
         private static readonly ResolveOptions _Default = new ResolveOptions();
         private static readonly ResolveOptions _FailUnregisteredAndNameNotFound = new ResolveOptions() { NamedResolutionFailureAction = NamedResolutionFailureActions.Fail, UnregisteredResolutionAction = UnregisteredResolutionActions.Fail };
@@ -783,7 +867,12 @@ namespace TinyIoC
     }
     #endregion
 
-    public sealed partial class TinyIoCContainer : IDisposable
+#if TINYIOC_INTERNAL
+    internal
+#else
+    public
+#endif
+    sealed partial class TinyIoCContainer : IDisposable
     {
         #region Fake NETFX_CORE Classes
 #if NETFX_CORE
@@ -1025,7 +1114,7 @@ namespace TinyIoC
 
                 return instance;
             }
-            
+
             private IEnumerable<RegisterOptions> ExecuteOnAllRegisterOptions(Func<RegisterOptions, RegisterOptions> action)
             {
                 var newRegisterOptions = new List<RegisterOptions>();
@@ -1060,7 +1149,7 @@ namespace TinyIoC
 #if APPDOMAIN_GETASSEMBLIES
             AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, null);
 #else
-            AutoRegisterInternal(new Assembly[] {this.GetType().Assembly()}, true, null);
+            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, null);
 #endif
         }
 
@@ -1077,7 +1166,7 @@ namespace TinyIoC
 #if APPDOMAIN_GETASSEMBLIES
             AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, registrationPredicate);
 #else
-            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly()}, true, registrationPredicate);
+            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
 #endif
         }
 
@@ -1091,7 +1180,7 @@ namespace TinyIoC
 #if APPDOMAIN_GETASSEMBLIES
             AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, null);
 #else
-            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, ignoreDuplicateImplementations, null);
+            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, duplicateAction, null);
 #endif
         }
 
@@ -1107,7 +1196,7 @@ namespace TinyIoC
 #if APPDOMAIN_GETASSEMBLIES
             AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, registrationPredicate);
 #else
-            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, ignoreDuplicateImplementations, registrationPredicate);
+            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, duplicateAction, registrationPredicate);
 #endif
         }
 
@@ -1725,7 +1814,6 @@ namespace TinyIoC
         /// Note: Resolution may still fail if user defined factory registations fail to construct objects when called.
         /// </summary>
         /// <param name="resolveType">Type to resolve</param>
-        /// <param name="name">Name of registration</param>
         /// <returns>Bool indicating whether the type can be resolved</returns>
         public bool CanResolve(Type resolveType)
         {
@@ -1738,6 +1826,7 @@ namespace TinyIoC
         /// Note: Resolution may still fail if user defined factory registations fail to construct objects when called.
         /// </summary>
         /// <param name="resolveType">Type to resolve</param>
+        /// <param name="name">Name of registration</param>
         /// <returns>Bool indicating whether the type can be resolved</returns>
         private bool CanResolve(Type resolveType, string name)
         {
@@ -1750,7 +1839,6 @@ namespace TinyIoC
         /// Note: Resolution may still fail if user defined factory registations fail to construct objects when called.
         /// </summary>
         /// <param name="resolveType">Type to resolve</param>
-        /// <param name="name">Name of registration</param>
         /// <param name="options">Resolution options</param>
         /// <returns>Bool indicating whether the type can be resolved</returns>
         public bool CanResolve(Type resolveType, ResolveOptions options)
@@ -1846,7 +1934,6 @@ namespace TinyIoC
         /// Note: Resolution may still fail if user defined factory registations fail to construct objects when called.
         /// </summary>
         /// <typeparam name="ResolveType">Type to resolve</typeparam>
-        /// <param name="name">Name of registration</param>
         /// <returns>Bool indicating whether the type can be resolved</returns>
         public bool CanResolve<ResolveType>()
             where ResolveType : class
@@ -1873,7 +1960,6 @@ namespace TinyIoC
         /// Note: Resolution may still fail if user defined factory registations fail to construct objects when called.
         /// </summary>
         /// <typeparam name="ResolveType">Type to resolve</typeparam>
-        /// <param name="name">Name of registration</param>
         /// <param name="options">Resolution options</param>
         /// <returns>Bool indicating whether the type can be resolved</returns>
         public bool CanResolve<ResolveType>(ResolveOptions options)
@@ -1972,7 +2058,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the default options
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
         /// <returns>True if resolved sucessfully, false otherwise</returns>
         public bool TryResolve(Type resolveType, out object resolvedType)
@@ -1992,7 +2078,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the given options
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="options">Resolution options</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
         /// <returns>True if resolved sucessfully, false otherwise</returns>
@@ -2013,7 +2099,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the default options and given name
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="name">Name of registration</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
         /// <returns>True if resolved sucessfully, false otherwise</returns>
@@ -2034,7 +2120,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the given options and name
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="name">Name of registration</param>
         /// <param name="options">Resolution options</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
@@ -2056,7 +2142,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the default options and supplied constructor parameters
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="parameters">User specified constructor parameters</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
         /// <returns>True if resolved sucessfully, false otherwise</returns>
@@ -2077,7 +2163,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the default options and supplied name and constructor parameters
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="name">Name of registration</param>
         /// <param name="parameters">User specified constructor parameters</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
@@ -2099,8 +2185,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the supplied options and constructor parameters
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
-        /// <param name="name">Name of registration</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="parameters">User specified constructor parameters</param>
         /// <param name="options">Resolution options</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
@@ -2122,7 +2207,7 @@ namespace TinyIoC
         /// <summary>
         /// Attemps to resolve a type using the supplied name, options and constructor parameters
         /// </summary>
-        /// <param name="ResolveType">Type to resolve</param>
+        /// <param name="resolveType">Type to resolve</param>
         /// <param name="name">Name of registration</param>
         /// <param name="parameters">User specified constructor parameters</param>
         /// <param name="options">Resolution options</param>
@@ -2279,7 +2364,6 @@ namespace TinyIoC
         /// Attemps to resolve a type using the supplied options and constructor parameters
         /// </summary>
         /// <typeparam name="ResolveType">Type to resolve</typeparam>
-        /// <param name="name">Name of registration</param>
         /// <param name="parameters">User specified constructor parameters</param>
         /// <param name="options">Resolution options</param>
         /// <param name="resolvedType">Resolved type or default if resolve fails</param>
@@ -2326,7 +2410,7 @@ namespace TinyIoC
         /// <summary>
         /// Returns all registrations of a type
         /// </summary>
-        /// <param name="ResolveType">Type to resolveAll</param>
+        /// <param name="resolveType">Type to resolveAll</param>
         /// <param name="includeUnnamed">Whether to include un-named (default) registrations</param>
         /// <returns>IEnumerable</returns>
         public IEnumerable<object> ResolveAll(Type resolveType, bool includeUnnamed)
@@ -2337,7 +2421,7 @@ namespace TinyIoC
         /// <summary>
         /// Returns all registrations of a type, both named and unnamed
         /// </summary>
-        /// <param name="ResolveType">Type to resolveAll</param>
+        /// <param name="resolveType">Type to resolveAll</param>
         /// <returns>IEnumerable</returns>
         public IEnumerable<object> ResolveAll(Type resolveType)
         {
@@ -2360,7 +2444,6 @@ namespace TinyIoC
         /// Returns all registrations of a type, both named and unnamed
         /// </summary>
         /// <typeparam name="ResolveType">Type to resolveAll</typeparam>
-        /// <param name="includeUnnamed">Whether to include un-named (default) registrations</param>
         /// <returns>IEnumerable</returns>
         public IEnumerable<ResolveType> ResolveAll<ResolveType>()
             where ResolveType : class
@@ -3089,9 +3172,9 @@ namespace TinyIoC
             {
                 var types = assemblies.SelectMany(a => a.SafeGetTypes()).Where(t => !IsIgnoredType(t, registrationPredicate)).ToList();
 
-                var concreteTypes = from type in types
-                                    where type.IsClass() && (type.IsAbstract() == false) && (type != this.GetType() && (type.DeclaringType != this.GetType()) && (!type.IsGenericTypeDefinition()))
-                                    select type;
+                var concreteTypes = types
+                    .Where(type => type.IsClass() && (type.IsAbstract() == false) && (type != this.GetType() && (type.DeclaringType != this.GetType()) && (!type.IsGenericTypeDefinition())))
+                    .ToList();
 
                 foreach (var type in concreteTypes)
                 {
@@ -3099,7 +3182,11 @@ namespace TinyIoC
                     {
                         RegisterInternal(type, string.Empty, GetDefaultObjectFactory(type, type));
                     }
+#if PORTABLE
+                    catch (MemberAccessException)
+#else
                     catch (MethodAccessException)
+#endif
                     {
                         // Ignore methods we can't access - added for Silverlight
                     }
@@ -3116,7 +3203,7 @@ namespace TinyIoC
                                           where localType.IsAssignableFrom(implementationType)
                                           select implementationType;
 
-                    if (implementations.Count() > 1)
+                    if (implementations.Skip(1).Any())
                     {
                         if (duplicateAction == DuplicateImplementationActions.Fail)
                             throw new TinyIoCAutoRegistrationException(type, implementations);
@@ -3134,7 +3221,11 @@ namespace TinyIoC
                         {
                             RegisterInternal(type, string.Empty, GetDefaultObjectFactory(type, firstImplementation));
                         }
+#if PORTABLE
+                        catch (MemberAccessException)
+#else
                         catch (MethodAccessException)
+#endif
                         {
                             // Ignore methods we can't access - added for Silverlight
                         }
@@ -3833,8 +3924,13 @@ namespace TinyIoC
             {
                 if (registerType.IsInterface())
                 {
+#if PORTABLE
+                    if (!registerImplementation.GetInterfaces().Any(t => t.Name == registerType.Name))
+                        return false;
+#else
                     if (!registerImplementation.FindInterfaces((t, o) => t.Name == registerType.Name, null).Any())
                         return false;
+#endif
                 }
                 else if (registerType.IsAbstract() && registerImplementation.BaseType() != registerType)
                 {
@@ -3864,13 +3960,9 @@ namespace TinyIoC
         #endregion
     }
 
-}
-
 // reverse shim for WinRT SR changes...
 #if !NETFX_CORE
-namespace System.Reflection
-{
-    public static class ReverseTypeExtender
+    static class ReverseTypeExtender
     {
         public static bool IsClass(this Type type)
         {
@@ -3922,5 +4014,5 @@ namespace System.Reflection
             return type.Assembly;
         }
     }
-}
 #endif
+}

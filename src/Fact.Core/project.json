@@ -57,7 +57,19 @@
             }
         },
         "aspnetcore50": {
-            "compilationOptions": { "define": [ "NET45", "NET40", "TINYIOC", "NETCORE" ] },
+            "compilationOptions": {
+                /*
+                 * PORTABLE is for TinyIoC.cs itself
+                 */
+                "define": [
+                    "NET45",
+                    "NET40",
+                    "TINYIOC",
+                    "NETCORE",
+
+                    "PORTABLE"
+                ]
+            },
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-22605",
                 "System.IO": "4.0.10-beta-22605",

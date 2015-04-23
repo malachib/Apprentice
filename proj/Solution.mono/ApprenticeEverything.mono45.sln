@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.Text.KeywordExpander", "mono45/Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.csproj", "{401C6426-0B15-405D-8975-9D6FF73BF512}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.Text.KeywordExpander", "..\mono45\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.csproj", "{401C6426-0B15-405D-8975-9D6FF73BF512}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{1A66E029-45CC-4F24-8024-D66DAB67E340}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.IAccessor.Shared", "..\..\src\Fact.IAccessor\Fact.IAccessor.Shared.shproj", "{399F141D-CBE0-4BE8-9D35-6D524E034379}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Text.KeywordExpander.Shared", "..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.shproj", "{69E898C5-FBEA-42F9-898B-8A9A84F64F90}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Core.Shared", "..\..\src\Fact.Core\Fact.Core.Shared.shproj", "{5A5E7FA7-646C-42B0-A434-2D3CA2CCFF4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.IAccessor", "..\mono45\Fact.IAccessor\Fact.IAccessor.csproj", "{D1CA5D58-3DAC-4D30-B916-DC8301F99E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.Core", "..\mono45\Fact.Core\Fact.Core.csproj", "{E86EB9B4-C21C-497F-A41D-847C4A2146A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,5 +25,18 @@ Global
 		{401C6426-0B15-405D-8975-9D6FF73BF512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{401C6426-0B15-405D-8975-9D6FF73BF512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{401C6426-0B15-405D-8975-9D6FF73BF512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1CA5D58-3DAC-4D30-B916-DC8301F99E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1CA5D58-3DAC-4D30-B916-DC8301F99E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1CA5D58-3DAC-4D30-B916-DC8301F99E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1CA5D58-3DAC-4D30-B916-DC8301F99E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E86EB9B4-C21C-497F-A41D-847C4A2146A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E86EB9B4-C21C-497F-A41D-847C4A2146A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E86EB9B4-C21C-497F-A41D-847C4A2146A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E86EB9B4-C21C-497F-A41D-847C4A2146A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{399F141D-CBE0-4BE8-9D35-6D524E034379} = {1A66E029-45CC-4F24-8024-D66DAB67E340}
+		{69E898C5-FBEA-42F9-898B-8A9A84F64F90} = {1A66E029-45CC-4F24-8024-D66DAB67E340}
+		{5A5E7FA7-646C-42B0-A434-2D3CA2CCFF4F} = {1A66E029-45CC-4F24-8024-D66DAB67E340}
 	EndGlobalSection
 EndGlobal

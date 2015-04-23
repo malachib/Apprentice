@@ -29,13 +29,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Castle.ILogger.PCL">
-      <HintPath>..\..\..\lib\Castle.ILogger.PCL.dll</HintPath>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\Solution.mono\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\Solution.mono\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\..\..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems')" />
+  <Import Project="..\..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fact.IAccessor\Fact.IAccessor.csproj">
+      <Project>{D1CA5D58-3DAC-4D30-B916-DC8301F99E87}</Project>
+      <Name>Fact.IAccessor</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

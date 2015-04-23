@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{39A4A049-E334-4C9C-972D-31BCEECD95A8}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Core.Shared", "..\..\src\Fact.Core\Fact.Core.Shared.shproj", "{5A5E7FA7-646C-42B0-A434-2D3CA2CCFF4F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Logging.Shared", "..\..\src\Fact.Logging\Fact.Logging.Shared.shproj", "{004C895B-13FA-425C-8541-B258DACA5ECA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.IAccessor.Shared", "..\..\src\Fact.IAccessor\Fact.IAccessor.Shared.shproj", "{399F141D-CBE0-4BE8-9D35-6D524E034379}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.Core", "..\monodroid\Fact.Core\Fact.Core.csproj", "{AF27E7FD-B3D9-40F7-8FB6-ADAACAC68220}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.StateAccessor", "..\monodroid\Fact.StateAccessor\Fact.StateAccessor.csproj", "{9E3EFB22-6C7D-4EA1-9905-1B132EF0DFD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E3EFB22-6C7D-4EA1-9905-1B132EF0DFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E3EFB22-6C7D-4EA1-9905-1B132EF0DFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E3EFB22-6C7D-4EA1-9905-1B132EF0DFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E3EFB22-6C7D-4EA1-9905-1B132EF0DFD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF27E7FD-B3D9-40F7-8FB6-ADAACAC68220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF27E7FD-B3D9-40F7-8FB6-ADAACAC68220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF27E7FD-B3D9-40F7-8FB6-ADAACAC68220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF27E7FD-B3D9-40F7-8FB6-ADAACAC68220}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A5E7FA7-646C-42B0-A434-2D3CA2CCFF4F} = {39A4A049-E334-4C9C-972D-31BCEECD95A8}
+		{004C895B-13FA-425C-8541-B258DACA5ECA} = {39A4A049-E334-4C9C-972D-31BCEECD95A8}
+		{399F141D-CBE0-4BE8-9D35-6D524E034379} = {39A4A049-E334-4C9C-972D-31BCEECD95A8}
+	EndGlobalSection
+EndGlobal

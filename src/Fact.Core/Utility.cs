@@ -3,6 +3,9 @@
 #if MONODROID
 #define TINYIOC
 #endif
+#if NETCORE
+#define MSIOC
+#endif
 
 using System;
 using System.Collections.Generic;
@@ -233,6 +236,8 @@ namespace Fact.Apprentice.Core
 
 #endif // !VNEXT
 #if !TINYIOC
+#if MSIOC
+#else
         /// <summary>
         /// Acquires component registered in windsor container, or returns NULL if
         /// it can't find it
@@ -268,6 +273,7 @@ namespace Fact.Apprentice.Core
 
             return handlers.Select(x => x.ComponentModel.Name);
         }
+#endif // !MSIOC
 #else // TINYIOC
         [Obsolete("Update to proper native TinyIoC TryResolve code.  This exists only temporarily as we transition code for vNext")]
         public static T TryResolve<T>(this TinyIoC.TinyIoCContainer container, string key = null)

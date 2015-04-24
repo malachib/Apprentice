@@ -67,15 +67,14 @@
                 "define": [
                     "NET45",
                     "NET40",
-                    "TINYIOC",
-                    "NETCORE",
-
-                    "PORTABLE"
+                    "NETCORE"
                 ]
             },
+            // System.ComponentModel for IServiceProvider
             "dependencies": {
                 "System.Runtime": "4.0.20-beta-22605",
                 "System.IO": "4.0.10-beta-22605",
+                "System.ComponentModel": "4.0.0-beta-22605",
                 "Microsoft.Framework.DependencyInjection": "1.0.0-beta3",
                 "System.Linq": "4.0.0-beta-22605"
             }

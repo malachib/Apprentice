@@ -3,6 +3,9 @@
 #if MONODROID
 #define TINYIOC
 #endif
+#if NETCORE
+#define MSIOC
+#endif
 
 using System;
 using System.Text;
@@ -10,20 +13,27 @@ using System.Text;
 using System.Configuration;
 #endif
 
+#if MSIOC
+using Microsoft.Framework.DependencyInjection;
+#else
 #if !TINYIOC
 using Castle.Windsor;
 using Castle.Windsor.Configuration.Interpreters;
 using Castle.DynamicProxy;
+#endif
 #endif
 
 namespace Fact.Apprentice.Core
 {
     public static class Global
     {
-#if TINYIOC
-        public static TinyIoC.TinyIoCContainer Container;
+#if MSIOC
+        public static readonly IServiceProvider Container;
 #else
-        public static IWindsorContainer Container;
+#if TINYIOC
+        public static readonly TinyIoC.TinyIoCContainer Container;
+#else // NO MSIOC and NO TINYIOC = Default of Windsor IoC
+        public static readonly IWindsorContainer Container;
 
 #if !MODULAR
         internal
@@ -32,6 +42,7 @@ namespace Fact.Apprentice.Core
         public
 #endif
         static readonly ProxyGenerator Proxy = new ProxyGenerator();
+#endif
 #endif
 
 #if !VNEXT
@@ -58,6 +69,11 @@ namespace Fact.Apprentice.Core
 #if TINYIOC
             Container = new TinyIoC.TinyIoCContainer();
 #else
+#if MSIOC
+            var serviceCollection = new ServiceCollection();
+            //serviceCollection.BuildServiceProvider(); // Not yet available? TBD
+            //Container = null; 
+#else // If not TINYIOC or MSIOC, default to Windsor IoC
             try
             {
                 // XmlInterpreter scans web/app.config for castle-related goodies
@@ -71,6 +87,7 @@ namespace Fact.Apprentice.Core
             {
                 Container = new WindsorContainer();
             }
+#endif
 #endif
         }
     }

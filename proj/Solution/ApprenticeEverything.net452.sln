@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22609.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{6709DFB4-9758-49AA-BE36-B368EC1AC1D6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Core.Shared", "..\..\src\Fact.Core\Fact.Core.Shared.shproj", "{5A5E7FA7-646C-42B0-A434-2D3CA2CCFF4F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.IAccessor.Shared", "..\..\src\Fact.IAccessor\Fact.IAccessor.Shared.shproj", "{399F141D-CBE0-4BE8-9D35-6D524E034379}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Logging.Shared", "..\..\src\Fact.Logging\Fact.Logging.Shared.shproj", "{004C895B-13FA-425C-8541-B258DACA5ECA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fact.Text.KeywordExpander.Shared", "..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.shproj", "{69E898C5-FBEA-42F9-898B-8A9A84F64F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fact.Core", "..\net452\Fact.Core\Fact.Core.csproj", "{E1A88034-241B-4E66-BC50-5AAE84E907D0}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\src\Fact.IAccessor\Fact.IAccessor.Shared.projitems*{399f141d-cbe0-4be8-9d35-6d524e034379}*SharedItemsImports = 13
+		..\..\src\Fact.Core\Fact.Core.Shared.projitems*{e1a88034-241b-4e66-bc50-5aae84e907d0}*SharedItemsImports = 4
+		..\..\src\Fact.Logging\Fact.Logging.Shared.projitems*{e1a88034-241b-4e66-bc50-5aae84e907d0}*SharedItemsImports = 4
+		..\..\src\Fact.Logging\Fact.Logging.Shared.projitems*{004c895b-13fa-425c-8541-b258daca5eca}*SharedItemsImports = 13
+		..\..\src\Fact.Core\Fact.Core.Shared.projitems*{5a5e7fa7-646c-42b0-a434-2d3ca2ccff4f}*SharedItemsImports = 13
+		..\..\src\Fact.Text.KeywordExpander\Fact.Text.KeywordExpander.Shared.projitems*{69e898c5-fbea-42f9-898b-8a9a84f64f90}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1A88034-241B-4E66-BC50-5AAE84E907D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A88034-241B-4E66-BC50-5AAE84E907D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A88034-241B-4E66-BC50-5AAE84E907D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A88034-241B-4E66-BC50-5AAE84E907D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A5E7FA7-646C-42B0-A434-2D3CA2CCFF4F} = {6709DFB4-9758-49AA-BE36-B368EC1AC1D6}
+		{399F141D-CBE0-4BE8-9D35-6D524E034379} = {6709DFB4-9758-49AA-BE36-B368EC1AC1D6}
+		{004C895B-13FA-425C-8541-B258DACA5ECA} = {6709DFB4-9758-49AA-BE36-B368EC1AC1D6}
+		{69E898C5-FBEA-42F9-898B-8A9A84F64F90} = {6709DFB4-9758-49AA-BE36-B368EC1AC1D6}
+	EndGlobalSection
+EndGlobal

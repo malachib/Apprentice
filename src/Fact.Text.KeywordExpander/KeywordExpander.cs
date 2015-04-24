@@ -10,6 +10,7 @@ using Fact.Apprentice.Core;
 using System.IO;
 using Castle.Core.Logging;
 using Fact.Apprentice.Collection;
+using System.Reflection;
 
 namespace Fact.Text
 {

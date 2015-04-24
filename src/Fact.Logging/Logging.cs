@@ -1,6 +1,9 @@
 ﻿// Keep in parity with ApprenticeOS
 #define DEBUG2
-
+#if NETCORE
+#define MSIOC
+#endif
+    
 #if MONODROID
 #define TINYIOC
 using Android.Util;
@@ -110,10 +113,14 @@ namespace Fact.Apprentice.Core
 #if TINYIOC
                 return Global.Container.Resolve<Castle.Core.Logging.ILoggerFactory>();
 #else
+#if MSIOC
+                return (ILoggerFactory) Global.Container.GetService(typeof(ILoggerFactory));
+#else
                 var factory = Global.Container.TryResolve<Castle.Core.Logging.ILoggerFactory>();
                 if (factory == null)
                     return new Castle.Core.Logging.NullLogFactory();
                 return factory;
+#endif
 #endif
             }
         }

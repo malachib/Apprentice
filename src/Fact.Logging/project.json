@@ -44,7 +44,7 @@
             }
         },
         "aspnetcore50": {
-            "compilationOptions": { "define": [ "NET45", "NET40", "TINYIOC", "NETCORE" ] },
+            "compilationOptions": { "define": [ "NET45", "NET40", "NETCORE" ] },
             "dependencies": {
                 "Castle.ILogger.vNext": "1.0.0",
                 "System.Runtime": "4.0.20-beta-22605",

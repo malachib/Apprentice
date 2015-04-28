@@ -3,7 +3,7 @@
 #if NETCORE
 #define MSIOC
 #endif
-    
+
 #if MONODROID
 #define TINYIOC
 using Android.Util;
@@ -180,11 +180,22 @@ namespace Fact.Apprentice.Core
         }
 
         /// <summary>
+        /// Same as ILogger.Debug, except this automatically prepends calling method's name
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="message"></param>
+        public static void D(this ILogger logger, string message, Exception exception)
+        {
+            var method = LogManager.GetMethod();
+            logger.Debug(method.Name + ": " + message, exception);
+        }
+
+        /// <summary>
         /// Same as ILogger.Error, except this automatically prepends calling method's name
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="message"></param>
-        public static void E(this Castle.Core.Logging.ILogger logger, string message)
+        public static void E(this ILogger logger, string message)
         {
             var method = LogManager.GetMethod();
             logger.Error(method.Name + ": " + message);
@@ -195,7 +206,7 @@ namespace Fact.Apprentice.Core
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="message"></param>
-        public static void E(this Castle.Core.Logging.ILogger logger, string message, Exception exception)
+        public static void E(this ILogger logger, string message, Exception exception)
         {
             var method = LogManager.GetMethod();
             logger.Error(method.Name + ": " + message, exception);
@@ -207,74 +218,10 @@ namespace Fact.Apprentice.Core
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="message"></param>
-        public static void F(this Castle.Core.Logging.ILogger logger, string message, Exception exception)
+        public static void F(this ILogger logger, string message, Exception exception)
         {
             var method = LogManager.GetMethod();
             logger.Fatal(method.Name + ": " + message, exception);
         }
     }
 }
-
-#if !VNEXT
-namespace Fact.Apprentice.Core.SI
-{
-    using Fact.Apprentice.Core.DAL;
-    using Fact.Apprentice.Core.Validation;
-
-    /// <summary>
-    /// MSEL-style log record. 
-    /// </summary>
-    /// <remarks>
-    /// TODO: Eventually refactor this out of Fact.Apprentice.Core
-    /// </remarks>
-#if !OSS
-    [SourceTable("Log")]
-#endif
-    public class LogRecord
-    {
-        [Identity]
-        public int LogID { get; set; }
-        public int? EventID { get; set; }
-        public int Priority { get; set; }
-
-        [Length(32)]
-        [Required]
-        public string Severity { get; set; }
-
-        [Length(256)]
-        [Required]
-        public string Title { get; set; }
-
-        public DateTime Timestamp { get; set; }
-
-        [Length(32)]
-        [Required]
-        public string MachineName { get; set; }
-
-        [Length(512)]
-        [Required]
-        public string AppDomainName { get; set; }
-
-        [Length(256)]
-        [Required]
-        public string ProcessID { get; set; }
-
-        [Length(512)]
-        [Required]
-        public string ProcessName { get; set; }
-
-        [Length(512)]
-        public string ThreadName { get; set; }
-
-        [Length(512)]
-        public string Win32ThreadId { get; set; }
-
-        [Length(1500)]
-        public string Message { get; set; }
-
-        [CLOB]
-        public string FormattedMessage { get; set; }
-    }
-}
-
-#endif

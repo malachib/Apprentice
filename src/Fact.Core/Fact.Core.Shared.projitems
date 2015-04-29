@@ -14,4 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TinyIoC.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Package.nuspec" />
+  </ItemGroup>
 </Project>

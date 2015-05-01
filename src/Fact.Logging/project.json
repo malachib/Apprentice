@@ -1,12 +1,14 @@
-﻿{
+{
     // Hopefully this technique will work to get Castle.ILogger shim working:
     // http://forums.asp.net/t/2002302.aspx?Adding+a+non+nuget+reference+to+a+vNext+project
     "version": "1.0.0-*",
     "dependencies": {
         "Castle.Core": "3.3.3",
         "Castle.Windsor": "3.3.0",
-        "System.Reflection": "4.0.10-beta-22605",
-        "Fact.Core": "1.0.0-*"
+        "System.Reflection": "4.0.10-beta-22816",
+        "Fact.Core": "1.0.0-*",
+        "System.Runtime": "4.0.20-beta-22816",
+        "System.Runtime.Extensions": "4.0.10-beta-22816"
     },
     "configurations": {
         "DEBUG": { "compilationOptions": { "define": [ "VNEXT" ] } }

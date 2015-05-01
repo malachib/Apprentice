@@ -1,9 +1,13 @@
-﻿{
+{
     "version": "1.0.0-*",
     // Had to disable v3 api.nuget for this to work properly
     "dependencies": {
         "Castle.Core": "3.3.3",
-        "Castle.Windsor": "3.3.0"
+        "Castle.Windsor": "3.3.0",
+        "System.Runtime": "4.0.20-beta-22816",
+        "Microsoft.Framework.Logging": "1.0.0-beta4",
+        "System.Net.Sockets": "4.0.0-beta-22816",
+        "System.Threading.Timer": "4.0.0-beta-22816"
     },
 
     "frameworks": {
@@ -13,7 +17,7 @@
             }
         },
         "net40": {
-            "compilationOptions": {"define": ["NET40"]},
+            "compilationOptions": { "define": [ "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
@@ -21,7 +25,7 @@
             }
         },
         "net45": {
-            "compilationOptions": {"define": ["NET45", "NET40"]},
+            "compilationOptions": { "define": [ "NET45", "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
@@ -29,7 +33,7 @@
             }
         },
         "aspnet50": {
-            "compilationOptions": {"define": ["NET46", "NET45", "NET40"]},
+            "compilationOptions": { "define": [ "NET46", "NET45", "NET40" ] },
             "dependencies": {
             },
             "frameworkAssemblies": {
@@ -37,7 +41,7 @@
             }
         },
         "aspnetcore50": {
-            "compilationOptions": {"define": ["NETCORE", "NET46", "NET45", "NET40"]},
+            "compilationOptions": { "define": [ "NETCORE", "NET46", "NET45", "NET40" ] },
             "dependencies": {
                 "Castle.ILogger.vNext": "1.0.0",
                 "Microsoft.Framework.Logging": "1.0.0-beta3",

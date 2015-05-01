@@ -2,11 +2,12 @@
     "version": "1.0.0-*",
     "dependencies": {
         "Fact.Logging": "",
-        "System.Reflection.TypeExtensions": "4.0.0-beta-22605",
-        "System.Collections": "4.0.10-beta-22605",
+        "System.Reflection.TypeExtensions": "4.0.0-beta-22816",
+        "System.Collections": "4.0.10-beta-22816",
         "Fact.IAccessor": "1.0.0-*",
-        "System.Collections.Specialized": "4.0.0-beta-22605",
-        "System.Reflection.Extensions": "4.0.0-beta-22605"
+        "System.Collections.Specialized": "4.0.0-beta-22816",
+        "System.Reflection.Extensions": "4.0.0-beta-22816",
+        "System.Runtime": "4.0.20-beta-22816"
     },
 
     "frameworks": {
